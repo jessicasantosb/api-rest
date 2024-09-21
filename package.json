@@ -4,8 +4,13 @@
   "main": "src/index.js",
   "author": "Jessica Bandeira",
   "license": "MIT",
+  "scripts": {
+    "start": "yarn ts-node-dev ./src/index.ts"
+  },
   "dependencies": {
-    "express": "^4.21.0"
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "http-status-codes": "^2.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
