@@ -12,15 +12,20 @@ router.get(
   CitiesControllers.getAllBodyValidation,
   CitiesControllers.getAll
 );
+router.post(
+  "/cities",
+  CitiesControllers.createBodyValidation,
+  CitiesControllers.create
+);
 router.get(
   "/cities/:id",
   CitiesControllers.getByIdBodyValidation,
   CitiesControllers.getById
 );
-router.post(
-  "/cities",
-  CitiesControllers.createBodyValidation,
-  CitiesControllers.create
+router.put(
+  "/cities/:id",
+  CitiesControllers.updateByIdBodyValidation,
+  CitiesControllers.updateById
 );
 
 export { router };
