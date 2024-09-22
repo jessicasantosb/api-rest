@@ -12,6 +12,11 @@ router.get(
   CitiesControllers.getAllBodyValidation,
   CitiesControllers.getAll
 );
+router.get(
+  "/cities/:id",
+  CitiesControllers.getByIdBodyValidation,
+  CitiesControllers.getById
+);
 router.post(
   "/cities",
   CitiesControllers.createBodyValidation,
