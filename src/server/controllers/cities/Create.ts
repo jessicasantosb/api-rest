@@ -1,37 +1,28 @@
-import { Request, RequestHandler, Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import * as yup from 'yup';
+import { Request, Response } from "express";
+import * as yup from "yup";
+import { validation } from "../../shared/middlewares";
 
 interface ICity {
-  nome: string,
-  estado: string
+  nome: string;
+  estado: string;
 }
 
-const bodyValidation: yup.Schema<ICity> = yup.object().shape({
-  nome: yup.string().required().min(3),
-  estado: yup.string().required().min(3)
-})
+interface IFilter {
+  filter: string;
+}
 
-export const createBodyValidator: RequestHandler = async (req, res, next) => {
-   try {
-     await bodyValidation.validate(req.body, {abortEarly: false,});
-     return next()
+export const createBodyValidation = validation({
+  body: yup.object().shape({
+    nome: yup.string().required().min(3),
+    estado: yup.string().required().min(3),
+  }),
+  query: yup.object().shape({
+    filter: yup.string().required().min(3),
+  }),
+});
 
-   } catch (err) {
-     const yupError = err as yup.ValidationError;
-     const errors: Record<string, string> = {};
-
-     yupError.inner.forEach((error) => {
-       if (!error.path) return;
-       errors[error.path] = error.message;
-     });
-
-     return res.status(StatusCodes.BAD_REQUEST).json({ errors: errors });
-   }  
-} 
-
-export const create  = async (req: Request<{}, {}, ICity>, res: Response) => {
+export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
   console.log(req.body);
 
-  return res.send('Criado com sucesso!')
-}
+  return res.send("Criado com sucesso!");
+};
