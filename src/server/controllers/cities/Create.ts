@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
-import { validation } from "../../shared/middlewares";
+import { validation } from "../../shared/middleware";
 
 interface ICity {
   nome: string;
@@ -8,18 +8,22 @@ interface ICity {
 }
 
 interface IFilter {
-  filter: string;
+  filter?: string;
 }
 
-export const createBodyValidation = validation({
-  body: yup.object().shape({
-    nome: yup.string().required().min(3),
-    estado: yup.string().required().min(3),
-  }),
-  query: yup.object().shape({
-    filter: yup.string().required().min(3),
-  }),
-});
+export const createBodyValidation = validation((getSchema) => ({
+  body: getSchema<ICity>(
+    yup.object().shape({
+      nome: yup.string().required().min(3),
+      estado: yup.string().required().min(3),
+    })
+  ),
+  query: getSchema<IFilter>(
+    yup.object().shape({
+      filter: yup.string().required().min(3),
+    })
+  ),
+}));
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
   console.log(req.body);
