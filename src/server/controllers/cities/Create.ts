@@ -6,14 +6,12 @@ import { validation } from "../../shared/middleware";
 
 interface ICity {
   nome: string;
-  estado: string;
 }
 
 export const createBodyValidation = validation((getSchema) => ({
   body: getSchema<ICity>(
     yup.object().shape({
       nome: yup.string().required().min(3),
-      estado: yup.string().required().min(3),
     })
   ),
 }));
