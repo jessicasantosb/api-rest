@@ -11,9 +11,9 @@ export const create = async (
     if (typeof result === "object") return result.id;
     if (typeof result === "number") return result;
 
-    return new Error("Error creating city");
+    return new Error("Erro ao criar a cidade.");
   } catch (error) {
     console.log(error);
-    return new Error("Error creating city");
+    return new Error("Erro ao criar a cidade.");
   }
 };
