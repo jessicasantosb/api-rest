@@ -43,5 +43,10 @@ router.post(
   PeopleControllers.createBodyValidation,
   PeopleControllers.create
 );
+router.get(
+  "/people/:id",
+  PeopleControllers.getByIdBodyValidation,
+  PeopleControllers.getById
+);
 
 export { router };
