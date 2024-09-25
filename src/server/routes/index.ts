@@ -48,6 +48,11 @@ router.get(
   PeopleControllers.getByIdBodyValidation,
   PeopleControllers.getById
 );
+router.put(
+  "/people/:id",
+  PeopleControllers.updateByIdBodyValidation,
+  PeopleControllers.updateById
+);
 router.delete(
   "/people/:id",
   PeopleControllers.deleteByIdBodyValidation,
