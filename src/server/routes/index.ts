@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CitiesControllers } from "../controllers";
+import { CitiesControllers, PeopleControllers } from "../controllers";
 
 const router = Router();
 
@@ -31,6 +31,12 @@ router.delete(
   "/cities/:id",
   CitiesControllers.deleteByIdBodyValidation,
   CitiesControllers.deleteById
+);
+
+router.post(
+  "/people",
+  PeopleControllers.createBodyValidation,
+  PeopleControllers.create
 );
 
 export { router };
