@@ -5,7 +5,7 @@
   "author": "Jessica Bandeira",
   "license": "MIT",
   "scripts": {
-    "start": "yarn ts-node-dev ./src/index.ts",
+    "dev": "ts-node-dev ./src/index.ts",
     "production": "node ./build/index.js",
     "postinstall": "tsc",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:rollback --all",
