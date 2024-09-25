@@ -33,6 +33,11 @@ router.delete(
   CitiesControllers.deleteById
 );
 
+router.get(
+  "/people",
+  PeopleControllers.getAllBodyValidation,
+  PeopleControllers.getAll
+);
 router.post(
   "/people",
   PeopleControllers.createBodyValidation,
