@@ -21,7 +21,7 @@ export const create = async (
 
     return new Error("Erro ao criar a pessoa.");
   } catch (error) {
-    console.log(error);
+    console.log("provider error: ", error);
     return new Error("Erro ao criar a pessoa.");
   }
 };

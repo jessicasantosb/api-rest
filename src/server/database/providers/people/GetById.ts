@@ -10,9 +10,9 @@ export const getById = async (id: number): Promise<IPerson | Error> => {
       .first();
 
     if (result) return result;
-    return new Error("Erro ao consultar a pessoa.");
+    return new Error("Pessoa não encontrada.");
   } catch (error) {
-    console.log(error);
+    console.log("provider error: ", error);
     return new Error("Erro ao consultar a pessoa.");
   }
 };
