@@ -3,8 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
 
 import { IPerson } from "../../database/models";
-import { CitiesProvider } from "../../database/providers/cities";
 import { validation } from "../../shared/middleware";
+import { PeopleProvider } from "../../database/providers/people";
 
 interface IParamsProps {
   id?: number;
@@ -38,7 +38,7 @@ export const updateById = async (
       },
     });
 
-  const result = await CitiesProvider.updateById(req.params.id, req.body);
+  const result = await PeopleProvider.updateById(req.params.id, req.body);
 
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
