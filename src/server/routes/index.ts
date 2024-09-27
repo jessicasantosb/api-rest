@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { CitiesControllers, PeopleControllers } from "../controllers";
-import { UsersControllers } from "../controllers/users";
+import { CitiesControllers, PeopleControllers, UsersControllers } from "../controllers";
 
 const router = Router();
 
@@ -60,6 +59,11 @@ router.delete(
   PeopleControllers.deleteById
 );
 
+router.post(
+  "/entrar",
+  UsersControllers.signInBodyValidation,
+  UsersControllers.signIn
+);
 router.post(
   "/registrar",
   UsersControllers.signUpBodyValidation,
