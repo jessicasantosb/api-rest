@@ -42,4 +42,14 @@ describe("Cities - Create", () => {
     expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     expect(res1.body).toHaveProperty("errors.body.nome");
   });
+
+  it("Should try to create a new city without name property", async () => {
+    const res1 = await testServer
+      .post("/cities")
+      .set({ Authorization: `Bearer ${accessToken}` })
+      .send();
+
+    expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+    expect(res1.body).toHaveProperty("errors.body.nome");
+  });
 });
