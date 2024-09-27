@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { IUser } from "../../database/models";
 import { UsersProvider } from "../../database/providers/users";
 import { validation } from "../../shared/middleware";
-import { PasswordCrypto } from "../../shared/services";
+import { JWTService, PasswordCrypto } from "../../shared/services";
 
 interface IBodyProps extends Omit<IUser, "id" | "nome"> {}
 
@@ -24,20 +24,17 @@ export const signIn = async (
 ) => {
   const { email, senha } = req.body;
 
-  const result = await UsersProvider.getByEmail(email);
+  const user = await UsersProvider.getByEmail(email);
 
-  if (result instanceof Error) {
+  if (user instanceof Error) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       errors: {
-        default: result.message,
+        default: user.message,
       },
     });
   }
 
-  const passwordMatch = await PasswordCrypto.verifyPassword(
-    senha,
-    result.senha
-  );
+  const passwordMatch = await PasswordCrypto.verifyPassword(senha, user.senha);
 
   if (!passwordMatch) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -46,8 +43,14 @@ export const signIn = async (
       },
     });
   } else {
-    return res
-      .status(StatusCodes.OK)
-      .json({ accessToken: "teste.teste.teste" });
+    const accessToken = JWTService.sign({ uid: user.id });
+    if (accessToken === "JWT_SECRET_NOT_FOUND") {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        errors: {
+          default: "Erro ao gerar o token de acesso.",
+        },
+      });
+    }
+    return res.status(StatusCodes.OK).json({ accessToken });
   }
 };
