@@ -15,6 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "http-status-codes": "^2.3.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.6.1",
