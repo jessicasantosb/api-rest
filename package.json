@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
     "production": "node ./build/index.js",
-    "postinstall": "tsc",
+    "preproduction": "tsc",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:rollback --all",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:rollback",
     "knex:migrate": "knex --knexfile ./src/server/database/knex/Environments.ts migrate:latest",
