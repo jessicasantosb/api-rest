@@ -88,7 +88,6 @@ Adicione as variáveis do banco de dados:
 ❯ DATABASE_NAME=<your_key>
 ❯ DATABASE_PASSWORD=<your_key>
 ❯ DATABASE_PORT=<your_key>
-❯ DATABASE_SSL=<your_key>
 ```
 
 ---
