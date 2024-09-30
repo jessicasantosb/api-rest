@@ -9,16 +9,16 @@ const startServer = () => {
   );
 };
 
-if (process.env.IS_LOCALHOST !== "true") {
-  Knex.migrate
-    .latest()
-    .then(() => {
-      Knex.seed
-        .run()
-        .then(() => startServer())
-        .catch(() => console.log);
-    })
-    .catch(() => console.log);
-} else {
-  startServer();
-}
+const init = async () => {
+  if (process.env.IS_LOCALHOST === "true") return startServer();
+
+  try {
+    await Knex.migrate.latest();
+    await Knex.seed.run();
+    startServer();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+init();
