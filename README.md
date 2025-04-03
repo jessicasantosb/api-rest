@@ -22,7 +22,7 @@
 
 **_Objetivo_**
 
-Meu principal objetivo é entender o funcionamento básico do backend para ter uma visão mais clara do fluxo das aplicações. Além disso, isso tem sido um ótimo ponto de partida para a implementação de testes unitários.
+Meu principal objetivo é entender o funcionamento básico do backend para ter uma visão mais clara do fluxo das aplicações. Além disso, isso tem sido um ótimo ponto de partida para a implementação de testes End-to-End (E2E).
 
 **_Motivação_**
 
@@ -92,7 +92,7 @@ Adicione as variáveis do banco de dados:
 
 ---
 
-### 🧪 Teste Unitário
+### 🧪 Teste End-to-End (E2E)
 
 #### [![jest](https://img.shields.io/badge/Jest-0A9EDC.svg?style=flat&logo=Jest&logoColor=white)](https://github.com/jessicasantosb/api-rest)
 
