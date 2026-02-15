@@ -1,11 +1,29 @@
 import { Knex } from "./server/database/knex";
 import { server } from "./server/Server";
+import { PORT } from "./server/utils/port";
 
-const port = process.env.PORT || 3333;
+const chalk = import("chalk").then((m) => m.default);
 
-const startServer = () => {
-  server.listen(port, () =>
-    console.log(`O servidor está rodando na porta ${port}`)
+const startServer = async () => {
+  const _chalk = await chalk;
+
+  server.listen(PORT, () =>
+    console.log(
+      _chalk.blueBright(`
+      _____                             
+     / ____|                            
+    | (___   ___ _ ____   _____ _ __    
+     \\___ \\ / _ \\ '__\\ \\ / / _ \\ '__|
+     ____) |  __/ |   \\ V /  __/ |     
+    |_____/ \\___|_|    \\_/ \\___|_|     
+    `),
+      _chalk.greenBright(`\n[✨] Serving awesomeness since now!\n`),
+      _chalk.magentaBright(
+        `\n[🚀] ${_chalk.bold(`Listening for requests on:`)} ${_chalk.underline(
+          `http://localhost:${PORT}`
+        )}`
+      )
+    )
   );
 };
 

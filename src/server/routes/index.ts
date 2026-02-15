@@ -6,11 +6,18 @@ import {
   UsersControllers,
 } from "../controllers";
 import { ensureAuthenticated } from "../shared/middleware";
+import { PORT } from "../utils/port";
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  return res.send("Hello world");
+  return res.send(`
+    <html>
+      <body style="background: #533B4D; color: #FAA4BD; width: 100%; min-height: 100dvh; text-align: center; padding-top: 7rem;">
+        <h1 style="color: #4CAF50; font-size: 3rem">Conexão estabelecida. Olá, mundo! 🌍</h1>
+        <p style="font-size: 1.5rem">API está rodando e disponível em: <a href="http://localhost:${PORT}" style="color: #FFD700">http://localhost:${PORT}</a></p>
+      </body>
+    </html>`);
 });
 
 router.get(
